@@ -1,0 +1,23 @@
+option go_package="github.com/KidPudel/delivery-service/proto/delivery";
+
+package delivery;
+
+service Delivery {
+	rpc SendToDelivery(OrderInfo) returns (DeliveryAcknowledgment) {}
+	rpc FindEachOther(stream Position) returns (stream Position) {}
+}
+
+message OrderInfo {
+	required uint32 type = 1;
+	required uint32 amount = 2;
+	optional string comment = 3;
+}
+
+message DeliveryAcknowledgment {
+	required string response = 1;
+}
+
+message Position {
+	required int32 lat = 1;
+	required int32 long = 2;
+}
